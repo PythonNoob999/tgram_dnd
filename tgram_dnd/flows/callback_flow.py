@@ -1,14 +1,14 @@
-from tgram_dnd.blocks import MessageBlock
+from tgram_dnd.blocks import CallbackBlock
 
 from tgram import TgBot, filters
-from tgram.types import Message
+from tgram.types import CallbackQuery
 
 from typing import List, Optional, Union
 
-class MessageFlow:
+class CallbackFlow:
     def __init__(
         self,
-        blocks: Union[List[MessageBlock], MessageBlock],
+        blocks: Union[List[CallbackBlock], CallbackBlock],
         filter: Optional[filters.Filter] = None,
     ):
         self.blocks = [blocks] if not isinstance(blocks, list) else blocks
@@ -19,14 +19,14 @@ class MessageFlow:
 
     def load_plugin(self) -> None:
         '''loads plugin into the bot'''
-        @self.bot.on_message(self.filter)
+        @self.bot.on_callback_query(self.filter)
         async def handle(
             bot: TgBot,
-            m: Message
+            cb: CallbackQuery
         ):
             for block in self.blocks:
 
                 for action in block.actions:
                     action.add_bot(self.bot)
 
-                await block.exec(bot, m)
+                await block.exec(bot, cb)

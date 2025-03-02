@@ -12,12 +12,10 @@ class Reply(Action):
         self,
         func_name: REPLY_METHODS,
         kwgs: ReplyInput = {},
-        bot: TgBot = None,
-        middleware: Callable = None,
+        middleware: Callable = None, 
         fill_vars: bool = True,
     ):
-        super().__init__(None, kwgs, bot, middleware, fill_vars=fill_vars)
-        self.kwgs = kwgs
+        super().__init__(None, kwgs, middleware, fill_vars=fill_vars)
         self.name = func_name
 
     async def __call__(self, m: Message):

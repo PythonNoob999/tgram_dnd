@@ -10,10 +10,9 @@ class Raw(Action):
         func_name: str,
         kwgs: dict = {},
         middleware: Callable = None,
-        bot: TgBot = None,
         fill_vars: bool = True,
     ):
-        super().__init__(None, kwgs, bot, middleware, fill_vars=fill_vars)
+        super().__init__(None, kwgs, middleware, fill_vars=fill_vars)
         self.name = func_name
 
     async def __call__(self, u: Update):

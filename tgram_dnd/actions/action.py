@@ -11,15 +11,16 @@ class Action:
         self,
         func: Callable = None,
         kwgs: dict = {},
-        bot: TgBot = None,
         middleware: Callable = None,
         fill_vars: bool = True
     ):
-        self.bot = bot
         self.func = func
         self.kwgs = kwgs
         self.middleware = middleware
         self.fill_vars = fill_vars
+
+    def add_bot(self, bot: TgBot) -> None:
+        self.bot = bot
 
     def render_vars(self, string: str, u: Update) -> str:
         return Template(string).render(**u.json)
@@ -28,6 +29,11 @@ class Action:
         _vars = self.kwgs.copy()
         if self.fill_vars:
             for var in _vars:
+                # load String
+                if isinstance(_vars[var], Callable):
+                    _vars[var] = self.render_vars(
+                        _vars[var](u), u
+                    )
                 if isinstance(_vars[var], str):
                     _vars[var] = self.render_vars(_vars[var], u)
 

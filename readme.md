@@ -59,46 +59,38 @@ or just simply code bots faster :)
 
 ## Usage
 
-#### Creating Basic EchoBot
+#### Bot Setup
 ```python
-from tgram_dnd import MessageBlock, MessageFlow, Reply
-from tgram import TgBot, filters
+from tgram_dnd import (
+  App, BotConfig, MessageFlow, MessageBlock, Reply
+)
+from tgram import TgBot
 
 bot = TgBot("INSERT_BOT_TOKEN")
-blocks = []
-
-# creating basic echo not
-blocks.append(
-    MessageBlock(
-        actions=[
-            Reply(
-                func_name="text",
-                # here are the arguments
-                kwgs={
-                    # {{var_name}} see vars templating for more info in the docs
-                    "text": "{{from.first_name}} Said: {{text}}"
-                },
-            )
-        ],
-        filter=(
-            filters.private & filters.text
-        )
-    )
+app = App(
+  bot=bot,
+  config=BotConfig(
+    strings="text.json",
+    default_lang="en"
+  ),
 )
 
-flow = MessageFlow(bot, blocks=blocks)
-# loading blocks
-flow.load_plugin()
-# running bot
-bot.run()
+app.add_flow(
+  MessageFlow(
+    ...
+  )
+)
+
+app.run()
 ```
-Example :
-<image src="resources/result.png">
+
+[Examples](https://github.com/PythonNoob999/tgram_dnd/examples)
 
 ## Roadmap
 - Adding More Abstracted Methods
-- Configuration System (db_setup, strings, etc)
+- Configuration System (db_setup, strings, etc) (50%)
 - JsonToBlocks Converter
+- Add Documentaion
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 

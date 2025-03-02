@@ -12,7 +12,7 @@ class MessageBlock:
         filter: Optional[filters.Filter] = None,
     ):
         '''this defines a MessageBlock'''
-        self.actions = actions if isinstance(actions, list) else [actions]
+        self.actions = [actions] if not isinstance(actions, list) else actions
         self.filter = filter or filters.all
 
     async def exec(
