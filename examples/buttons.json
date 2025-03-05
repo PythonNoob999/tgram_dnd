@@ -1,0 +1,123 @@
+{
+    "strings": {
+        "start": {
+            "en": "Welcome {{from.first_name}}",
+            "ar": "مرحبا يا {{from.first_name}}"
+        },
+        "communities": {
+            "en": "@channel123"
+        },
+        "about": {
+            "ar": "هذا البوت التجريبي قد صنع لتجربة المكتبة",
+            "en": "this bot is made to test tgram_dnd library"
+        },
+        "rules": {
+            "ar": "لا يوجد قواعد",
+            "en": "there is no rules"
+        }
+    },
+    "keyboards": {
+        "start": {
+            "ar": [
+                [
+                    {
+                        "text": "المجتمعات 🌍",
+                        "callback_data": "com"
+                    }
+                ],
+                [
+                    {
+                        "text": "معلومات عننا ⁉️",
+                        "callback_data": "about"
+                    }
+                ],
+                [
+                    {
+                        "text": "القوانين 📰",
+                        "callback_data": "rules"
+                    }
+                ]
+            ],
+            "en": [
+                [
+                    {
+                        "text": "communities 🌍",
+                        "callback_data": "com"
+                    }
+                ],
+                [
+                    {
+                        "text": "about us ⁉️",
+                        "callback_data": "about"
+                    }
+                ],
+                [
+                    {
+                        "text": "rules 📰",
+                        "callback_data": "rules"
+                    }
+                ]
+            ]
+        },
+        "close": {
+            "ar": [
+                [
+                    {
+                        "text": "اغلاق ❌",
+                        "callback_data": "close"
+                    }
+                ]
+            ],
+            "en": [
+                [
+                    {
+                        "text": "close ❌",
+                        "callback_data": "close"
+                    }
+                ]
+            ]
+        }
+    },
+    "commands": [
+        {
+            "command": "start",
+            "description": "start the bot",
+            "language_code": "en"
+        },
+        {
+            "command": "communities",
+            "description": "our communities",
+            "language_code": "en"
+        },
+        {
+            "command": "about",
+            "description": "about us",
+            "language_code": "en"
+        },
+        {
+            "command": "rules",
+            "description": "bot rules",
+            "language_code": "en"
+        },
+        {
+            "command": "start",
+            "description": "بدأ البوت",
+            "language_code": "ar"
+        },
+        {
+            "command": "communities",
+            "description": "مجتمعاتنا",
+            "language_code": "ar"
+        },
+        {
+            "command": "about",
+            "description": "معلومات عننا",
+            "language_code": "ar"
+        },
+        {
+            "command": "rules",
+            "description": "القوانين",
+            "language_code": "ar"
+        }
+    ]
+}
