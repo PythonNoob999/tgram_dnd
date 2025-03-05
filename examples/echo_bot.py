@@ -31,7 +31,7 @@ app.add_flows(
                     func_name="text",
                     # here are the arguments
                     kwgs={
-                        "text": app.string("echo")
+                        "text": app.config.string("echo")
                     },
                 )
             ],
