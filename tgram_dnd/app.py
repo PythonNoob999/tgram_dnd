@@ -17,7 +17,6 @@ class App:
         self.bot = bot
         self.flows = flows
         self.config = config
-        self.config.load_strings()
 
     def add_flows(
         self,
@@ -25,24 +24,14 @@ class App:
     ):
         flows = [flows] if not isinstance(flows, list) else flows
         self.flows += flows
-
-    def string(self, key: str, force_language: LANGUAGE_CODES = None) -> Callable:
-
-        def deco(u: Update):
-            if force_language:
-                _ = self.config.strings[key].get(
-                    force_language, self.config.strings[key][self.config.default_lang]
-                )
-            else:
-                _ = self.config.strings[key].get(
-                    u.from_user.language_code, self.config.strings[key][self.config.default_lang]
-                )
-            return _
-        return deco
     
     def run(self) -> None:
         for flow in self.flows:
             flow.add_bot(self.bot)
             flow.load_plugin()
+        
+        # setting up config
+        if self.config:
+            self.config.configure(bot=self.bot)
 
         self.bot.run()
