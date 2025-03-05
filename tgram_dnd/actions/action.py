@@ -29,11 +29,15 @@ class Action:
         _vars = self.kwgs.copy()
         if self.fill_vars:
             for var in _vars:
-                # load String
+
                 if isinstance(_vars[var], Callable):
-                    _vars[var] = self.render_vars(
-                        _vars[var](u), u
-                    )
+                    _vars[var] = _vars[var](u)
+
+                    if isinstance(_vars[var], str):
+                        _vars[var] = self.render_vars(
+                            _vars[var], u
+                        )
+
                 if isinstance(_vars[var], str):
                     _vars[var] = self.render_vars(_vars[var], u)
 

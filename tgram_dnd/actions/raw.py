@@ -16,5 +16,9 @@ class Raw(Action):
         self.name = func_name
 
     async def __call__(self, u: Update):
-        self.func = getattr(u, self.name, None)
+        # getting to wanted function
+        func = getattr(u, self.name.split(".")[0])
+        for attr in self.name.split(".")[1:]:
+            func = getattr(func, attr, None)
+        self.func = func
         return await super().__call__(u)
