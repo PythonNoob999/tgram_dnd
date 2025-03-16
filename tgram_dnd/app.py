@@ -1,13 +1,12 @@
 from tgram_dnd.flows import MessageFlow, CallbackFlow
 from tgram_dnd.config import BotConfig
-from tgram_dnd.enums.language_codes import LANGUAGE_CODES
 
 from tgram import TgBot
-from tgram.types import Update
 
-from typing import List, Union, Callable
+from typing import List, Union
 
 class App:
+    '''The main class used to run your Flows'''
     def __init__(
         self,
         bot: TgBot,
@@ -22,10 +21,12 @@ class App:
         self,
         flows: Union[List[Union[MessageFlow, CallbackFlow]], Union[MessageFlow, CallbackFlow]]
     ):
+        '''add flows to current app'''
         flows = [flows] if not isinstance(flows, list) else flows
         self.flows += flows
     
     def run(self) -> None:
+        '''run the bot'''
         for flow in self.flows:
             flow.add_bot(self.bot)
             flow.load_plugin()

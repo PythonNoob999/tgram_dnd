@@ -9,3 +9,4 @@ REPLY_METHODS = Literal[
     "dice",
     "sticker"
 ]
+''':class:`tgram_dnd.actions.methods.reply.Reply` Methods'''

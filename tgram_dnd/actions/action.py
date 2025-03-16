@@ -1,12 +1,20 @@
 from tgram_dnd.errors import StopExecution
-from tgram import TgBot
+from tgram_dnd.utils import render_vars
 
-from typing import Callable
-from jinja2 import Template
+from tgram import TgBot
 from tgram.types import Update
+from typing import Callable, Union
+
 import asyncio
 
 class Action:
+    '''The base class for all Actions
+    
+    Args:
+        func (Callable, *optional*): the function that will be executed
+        kwgs (dict[str, Any], *optional*): additonal arguments for func
+        middleware (Callabe, *optional*): a function to be executed before the main function run
+        fill_vars (bool, *True*): Weither to automatically render vars in kwgs or not, defaults to *true*'''
     def __init__(
         self,
         func: Callable = None,
@@ -22,10 +30,10 @@ class Action:
     def add_bot(self, bot: TgBot) -> None:
         self.bot = bot
 
-    def render_vars(self, string: str, u: Update) -> str:
-        return Template(string).render(**u.json)
-
     async def __call__(self, u: Update):
+        '''the entry-point to the action
+        here we
+        render vars, running middleware, and finally executing main_funciton'''
         _vars = self.kwgs.copy()
         if self.fill_vars:
             for var in _vars:
@@ -33,13 +41,8 @@ class Action:
                 if isinstance(_vars[var], Callable):
                     _vars[var] = _vars[var](u)
 
-                    if isinstance(_vars[var], str):
-                        _vars[var] = self.render_vars(
-                            _vars[var], u
-                        )
-
                 if isinstance(_vars[var], str):
-                    _vars[var] = self.render_vars(_vars[var], u)
+                    _vars[var] = render_vars(_vars[var], u)
 
         if not isinstance(self.func, Callable):
             raise ValueError(f"{self.__class__.__name__}.func should be callable, not {type(self.func)}")
@@ -54,6 +57,6 @@ class Action:
                 return
 
         if asyncio.iscoroutinefunction(self.func):
-            await self.func(**_vars)
+            return await self.func(**_vars)
         else:
-            await asyncio.to_thread(self.func, **_vars)
+            return await asyncio.to_thread(self.func, **_vars)

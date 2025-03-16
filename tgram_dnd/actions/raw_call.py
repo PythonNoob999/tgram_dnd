@@ -5,6 +5,25 @@ from tgram import TgBot
 from typing import Callable
 
 class RawCall(Action):
+    '''Run a method from the TgBot instance
+    
+    .. code-block:: python
+    
+        action = RawCall(
+            func_name='get_me',
+        )
+        res = await action(AnyUpdate)
+
+        print(res)
+        # <class 'tgram.types.User'>
+        print("@" + res.username)
+        # @MyAwesomeBot
+    
+    Args:
+        func (Callable, *optional*): the function that will be executed
+        kwgs (dict[str, Any], *optional*): additonal arguments for func
+        middleware (Callabe, *optional*): a function to be executed before the main function run
+        fill_vars (bool, *True*): Weither to automatically render vars in kwgs or not, defaults to *true*'''
     def __init__(
         self,
         func_name: str,

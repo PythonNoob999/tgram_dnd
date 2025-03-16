@@ -1,10 +1,26 @@
 from tgram_dnd.actions.action import Action
-from tgram.types import Update
+from tgram_dnd.utils import get_target_function
 
-from tgram import TgBot
+from tgram.types import Update
 from typing import Callable
 
 class Raw(Action):
+    '''Run a method from the Update
+    
+    .. code-block:: python
+    
+        action = Raw(
+            func_name='reply_text',
+            kwgs={"text": "Wassup"},
+        )
+        await action(Message)
+        # Called Message.reply_text(text="Wassup")
+         
+    Args:
+        func (Callable, *optional*): the function that will be executed
+        kwgs (dict[str, Any], *optional*): additonal arguments for func
+        middleware (Callabe, *optional*): a function to be executed before the main function run
+        fill_vars (bool, *True*): Weither to automatically render vars in kwgs or not, defaults to *true*'''
     def __init__(
         self,
         func_name: str,
@@ -17,8 +33,7 @@ class Raw(Action):
 
     async def __call__(self, u: Update):
         # getting to wanted function
-        func = getattr(u, self.name.split(".")[0])
-        for attr in self.name.split(".")[1:]:
-            func = getattr(func, attr, None)
-        self.func = func
+        self.func = get_target_function(
+            u, self.name
+        )
         return await super().__call__(u)

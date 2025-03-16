@@ -1,6 +1,6 @@
 from typing import TypedDict, Optional
 from tgram.types import (
-    InlineKeyboardMarkup as IKM,
+    InlineKeyboardMarkup
 )
 
 class ReplyInput(TypedDict):
@@ -12,4 +12,6 @@ class ReplyInput(TypedDict):
     sticker: Optional[str]
     audio: Optional[str]
     emoji: Optional[str]
-    reply_markup: Optional[IKM]
+    reply_markup: Optional[InlineKeyboardMarkup]
+
+'''a set of arguments for :class:`tgram_dnd.actions.methods.Reply`'''

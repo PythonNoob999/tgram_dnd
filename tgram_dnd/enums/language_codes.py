@@ -185,3 +185,4 @@ LANGUAGE_CODES = Literal[
     "za",
     "zu",
 ]
+'''A list of all language codes'''
