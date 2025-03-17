@@ -8,6 +8,7 @@ def get_target_function(
     '''used to get a specific function from obj by getting its attribuites
     
     .. code_block:: python
+
         # example with first class method
         obj = Message
         target = "reply_text"
