@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="tgram_dnd",
-    version="0.0.4beta",
+    version="0.0.5beta",
     description="Tgram Darg-And-Drop helper is a lib to help building DragAndDrop applications, or simply just to make bots faster",
     long_description=open("readme.md", "r+").read(),
     long_description_content_type='text/markdown',
