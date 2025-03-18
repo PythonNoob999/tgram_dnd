@@ -15,6 +15,8 @@ Subpackages
 Submodules
 ----------
 
+.. _app:
+
 tgram\_dnd.app module
 ---------------------
 
@@ -23,6 +25,8 @@ tgram\_dnd.app module
    :show-inheritance:
    :undoc-members:
 
+.. _config:
+
 tgram\_dnd.config module
 ------------------------
 
@@ -30,6 +34,8 @@ tgram\_dnd.config module
    :members:
    :show-inheritance:
    :undoc-members:
+
+.. _errors:
 
 tgram\_dnd.errors module
 ------------------------

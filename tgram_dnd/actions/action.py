@@ -42,7 +42,7 @@ class Action:
                     _vars[var] = _vars[var](u)
 
                 if isinstance(_vars[var], str):
-                    _vars[var] = render_vars(_vars[var], u)
+                    _vars[var] = render_vars(_vars[var], u.json)
 
         if not isinstance(self.func, Callable):
             raise ValueError(f"{self.__class__.__name__}.func should be callable, not {type(self.func)}")
