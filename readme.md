@@ -1,3 +1,6 @@
+
+<div align="center"> <a href="https://github.com/PythonNoob999/tgram_dnd"><h1>Tgram-DND</h1></a>  <b>a helper/utils library to help build Telegram Bot Drag-And-Drop Applications</b> <br> <a href="https://tgram-dnd.readthedocs.io/en/latest/index.html">Documentation</a> • <a href="https://github.com/PythonNoob999/tgram_dnd/tree/main/examples">Examples</a> </div>
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -122,6 +125,6 @@ Distributed under the GPL-3 License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-SpicyPneguin - [telegram](https://t.me/kerolis55463)
+SpicyPenguin - [telegram](https://t.me/kerolis55463)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
