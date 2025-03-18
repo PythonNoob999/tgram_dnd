@@ -22,4 +22,6 @@ Content Table
 .. toctree::
    :maxdepth: 2
 
+   get_started/index
+   topics/index
    tgram_dnd
