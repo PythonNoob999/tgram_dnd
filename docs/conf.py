@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath(".."))
 project = 'TgramDND'
 copyright = '2025, SpicyPenguin'
 author = 'SpicyPenguin'
-release = '0.0.4b'
+release = '0.0.5b'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
