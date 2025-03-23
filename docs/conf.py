@@ -17,7 +17,7 @@ release = '0.0.5b'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.napoleon"]
+extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.napoleon", "sphinxcontrib.googleanalytics"]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -28,6 +28,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'furo'
+googleanalytics_id = os.environ["GA_ID"]
 autodoc_type_aliases = {
     "LANGUAGE_CODES": "tgram_dnd.enums.language_codes.LANGUAGE_CODES",
     "REPLY_METHODS": "tgram_dnd.enums.reply_methods.REPLY_METHODS",

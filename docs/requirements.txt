@@ -2,3 +2,4 @@ sphinx
 furo
 tgram-dnd
 tgram
+sphinxcontrib-googleanalytics
