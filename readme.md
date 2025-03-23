@@ -1,5 +1,5 @@
 
-<div align="center"> <a href="https://github.com/PythonNoob999/tgram_dnd"><h1>Tgram-DND</h1></a>  <b>a helper/utils library to help build Telegram Bot Drag-And-Drop Applications</b> <br> <a href="https://tgram-dnd.readthedocs.io/en/latest/index.html">Documentation</a> • <a href="https://github.com/PythonNoob999/tgram_dnd/tree/main/examples">Examples</a> </div>
+<div align="center"> <img src="resources/tgram_dnd.svg" width=250 width=250> <a href="https://github.com/PythonNoob999/tgram_dnd"><h1>Tgram-DND</h1></a>  <b>a helper/utils library to help build Telegram Bot Drag-And-Drop Applications</b> <br> <a href="https://tgram-dnd.readthedocs.io/en/latest/index.html">Documentation</a> • <a href="https://github.com/PythonNoob999/tgram_dnd/tree/main/examples">Examples</a> </div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
