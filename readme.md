@@ -31,7 +31,8 @@
 ## About Project
 
 tgram_dnd is a helper/utils library to help build Telegram Bot Drag-And-Drop application
-or just simply code bots faster :)
+by seperating the bot logic into manageable chunks
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Built With
@@ -44,9 +45,9 @@ or just simply code bots faster :)
 
 ### Prerequisites
 
-* [python<=3.10](https://www.python.org/)
-* [tgram<=1.12.16](https://github.com/z44d/tgram/releases/tag/v1.12.6)
-* [jinja2<=3.1.5](https://github.com/pallets/jinja/releases/tag/3.1.5)
+* [python>=3.10](https://www.python.org/)
+* [tgram>=1.12.16](https://github.com/z44d/tgram/releases/tag/v1.12.6)
+* [jinja2>=3.1.5](https://github.com/pallets/jinja/releases/tag/3.1.5)
 
 ### Installation
 
@@ -90,10 +91,10 @@ app.run()
 [Examples](https://github.com/PythonNoob999/tgram_dnd/tree/main/examples)
 
 ## Roadmap
+- [X] Add Documentaion
 - Adding More Abstracted Methods
 - Configuration System (db_setup, strings, etc) (50%)
 - JsonToBlocks Converter
-- Add Documentaion
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
