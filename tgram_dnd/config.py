@@ -55,7 +55,7 @@ class BotConfig:
         self.keyboards = keyboards or {}
         self.default_lang = default_lang
         self.commands = bot_commands or []
-        if os.path.isfile(config_file):
+        if config_file and os.path.isfile(config_file):
             self.load_file_data(config_file)
     
     def load_file_data(

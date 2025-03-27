@@ -22,16 +22,6 @@ class MessageFlow:
         self.blocks = [blocks] if not isinstance(blocks, list) else blocks
         self.filter = filter or filters.all
 
-    def add_bot(self, bot: TgBot):
-        '''adds a TgBot instance to pass it to Blocks
-        
-        Args:
-            bot (`tgram.client.TgBot <https://z44d.github.io/tgram/tgram.html#tgram.TgBot>`_)
-        
-        Returns:
-            None'''
-        self.bot = bot
-
     def load_plugin(self) -> None:
         '''loads plugin into the bot'''
         @self.bot.on_message(self.filter)
@@ -42,6 +32,6 @@ class MessageFlow:
             for block in self.blocks:
 
                 for action in block.actions:
-                    action.add_bot(self.bot)
+                    action.add_bot(bot)
 
                 await block.exec(bot, m)

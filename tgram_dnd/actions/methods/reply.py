@@ -5,7 +5,6 @@ from tgram_dnd.enums.reply_methods import REPLY_METHODS
 from tgram_dnd.enums.reply_input import ReplyInput
 
 from tgram.types import Message
-from tgram import TgBot
 
 from typing import Callable
 
