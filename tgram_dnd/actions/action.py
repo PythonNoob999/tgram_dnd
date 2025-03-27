@@ -1,5 +1,5 @@
 from tgram_dnd.errors import StopExecution
-from tgram_dnd.utils import render_vars
+from tgram_dnd.utils import render_vars, run_function
 
 from tgram import TgBot
 from tgram.types import Update
@@ -18,12 +18,12 @@ class Action:
     def __init__(
         self,
         func: Callable = None,
-        kwgs: dict = {},
+        kwgs: dict = None,
         middleware: Callable = None,
         fill_vars: bool = True
     ):
         self.func = func
-        self.kwgs = kwgs
+        self.kwgs = kwgs or {}
         self.middleware = middleware
         self.fill_vars = fill_vars
 
@@ -33,8 +33,9 @@ class Action:
     async def __call__(self, u: Update):
         '''the entry-point to the action
         here we
-        render vars, running middleware, and finally executing main_funciton'''
+        render vars, run middlewares, and finally executing main funciton'''
         _vars = self.kwgs.copy()
+
         if self.fill_vars:
             for var in _vars:
 
@@ -49,14 +50,10 @@ class Action:
         
         if self.middleware:
             try:
-                if asyncio.iscoroutinefunction(self.middleware):
-                    await self.middleware(self.func, u, _vars)
-                else:
-                    await asyncio.to_thread(self.middleware, self.func, u, _vars)
+                await run_function(
+                    self.middleware, self.func, u, _vars
+                )
             except StopExecution:
                 return
 
-        if asyncio.iscoroutinefunction(self.func):
-            return await self.func(**_vars)
-        else:
-            return await asyncio.to_thread(self.func, **_vars)
+        return await run_function(self.func, **_vars)

@@ -1,7 +1,6 @@
 from tgram_dnd.actions.action import Action
 from tgram.types import Update
 
-from tgram import TgBot
 from typing import Callable
 
 class RawCall(Action):
