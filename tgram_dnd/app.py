@@ -1,4 +1,6 @@
 from tgram_dnd.flows import MessageFlow, CallbackFlow
+from tgram_dnd.caching.base import BaseCache
+from tgram_dnd.caching.memory import MemoryCache
 from tgram_dnd.config import BotConfig
 
 from tgram import TgBot
@@ -11,11 +13,13 @@ class App:
         self,
         bot: TgBot,
         flows: List[Union[MessageFlow, CallbackFlow]] = [],
-        config: BotConfig = None
+        config: BotConfig = None,
+        cache: BaseCache = None
     ):
         self.bot = bot
         self.flows = flows
         self.config = config
+        self.cache = cache or MemoryCache()
 
     def add_flows(
         self,
