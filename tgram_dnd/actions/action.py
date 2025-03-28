@@ -4,7 +4,7 @@ from tgram_dnd.utils import render_vars, run_function
 from tgram.types import Update
 from typing import Callable
 
-import asyncio, tgram_dnd
+import tgram_dnd
 
 class Action:
     '''The base class for all Actions
@@ -39,6 +39,14 @@ class Action:
         render vars, run middlewares, and finally executing main funciton'''
         _vars = self.kwgs.copy()
 
+        if self.middleware:
+            try:
+                await run_function(
+                    self.middleware, self, u, _vars
+                )
+            except StopExecution:
+                return
+    
         if self.fill_vars:
             for var in _vars:
 
@@ -51,16 +59,8 @@ class Action:
                         u.json,
                         {"cache": self.app.cache}
                     )
-
+        
         if not isinstance(self.func, Callable):
             raise ValueError(f"{self.__class__.__name__}.func should be callable, not {type(self.func)}")
-        
-        if self.middleware:
-            try:
-                await run_function(
-                    self.middleware, self.func, u, _vars
-                )
-            except StopExecution:
-                return
 
         return await run_function(self.func, **_vars)
