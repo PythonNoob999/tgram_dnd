@@ -1,11 +1,10 @@
 from tgram_dnd.errors import StopExecution
 from tgram_dnd.utils import render_vars, run_function
 
-from tgram import TgBot
 from tgram.types import Update
-from typing import Callable, Union
+from typing import Callable
 
-import asyncio
+import asyncio, tgram_dnd
 
 class Action:
     '''The base class for all Actions
@@ -27,8 +26,12 @@ class Action:
         self.middleware = middleware
         self.fill_vars = fill_vars
 
-    def add_bot(self, bot: TgBot) -> None:
-        self.bot = bot
+    def inject(
+        self,
+        app: "tgram_dnd.app.App"
+    ):
+        self.bot = app.bot
+        self.app = app
 
     async def __call__(self, u: Update):
         '''the entry-point to the action
@@ -43,7 +46,11 @@ class Action:
                     _vars[var] = _vars[var](u)
 
                 if isinstance(_vars[var], str):
-                    _vars[var] = render_vars(_vars[var], u.json)
+                    _vars[var] = render_vars(
+                        _vars[var],
+                        u.json,
+                        {"cache": self.app.cache}
+                    )
 
         if not isinstance(self.func, Callable):
             raise ValueError(f"{self.__class__.__name__}.func should be callable, not {type(self.func)}")

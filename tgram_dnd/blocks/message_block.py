@@ -2,8 +2,12 @@ from tgram import TgBot, filters
 from tgram.types import (
     Message
 )
+
 from tgram_dnd.actions.action import Action
+
 from typing import Optional, Union, List
+
+import tgram_dnd
 
 class MessageBlock:
     '''the block that process Messages and runs a series of Actions (:ref:`what-is-an-action?`)
@@ -23,6 +27,13 @@ class MessageBlock:
         self.actions = [actions] if not isinstance(actions, list) else actions
         self.filter = filter or filters.all
 
+    def inject(
+        self,
+        app: "tgram_dnd.app.App"
+    ):
+        self.bot = app.bot
+        self.app = app
+
     async def exec(
         self,
         bot: TgBot,
@@ -31,4 +42,5 @@ class MessageBlock:
         '''this is where the block actions run'''
         if await self.filter(bot, m):
             for action in self.actions:
+                action.inject(self.app)
                 await action(m)

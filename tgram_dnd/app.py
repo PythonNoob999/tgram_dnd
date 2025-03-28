@@ -32,7 +32,7 @@ class App:
     def run(self) -> None:
         '''run the bot'''
         for flow in self.flows:
-            flow.add_bot(self.bot)
+            flow.inject(self)
             flow.load_plugin()
         
         # setting up config

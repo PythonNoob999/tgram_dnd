@@ -1,9 +1,11 @@
-from tgram_dnd.blocks import CallbackBlock
+from tgram_dnd.blocks.callback_block import CallbackBlock
 
 from tgram import TgBot, filters
 from tgram.types import CallbackQuery
 
 from typing import List, Optional, Union
+
+import tgram_dnd
 
 class CallbackFlow:
     '''a flow used to track CallBacks
@@ -23,15 +25,12 @@ class CallbackFlow:
         self.filter = filter or filters.all
         self.bot: TgBot = None
 
-    def add_bot(self, bot: TgBot):
-        '''adds a TgBot instance to pass it to Blocks
-        
-        Args:
-            bot (`tgram.client.TgBot <https://z44d.github.io/tgram/tgram.html#tgram.TgBot>`_)
-        
-        Returns:
-            None'''
-        self.bot = bot
+    def inject(
+        self,
+        app: "tgram_dnd.app.App"
+    ):
+        self.bot = app.bot
+        self.app = app
 
     def load_plugin(self) -> None:
         '''loads plugin into the bot'''
@@ -41,8 +40,5 @@ class CallbackFlow:
             cb: CallbackQuery
         ):
             for block in self.blocks:
-
-                for action in block.actions:
-                    action.add_bot(self.bot)
-
+                block.inject(self.app)
                 await block.exec(bot, cb)
