@@ -1,5 +1,7 @@
 from jinja2 import Template
-from typing import Optional, Callable, Union
+from typing import Optional, Callable, Union, Any
+
+import asyncio
 
 def get_target_function(
     obj: object,
@@ -7,7 +9,7 @@ def get_target_function(
 ) -> Optional[Callable]:
     '''used to get a specific function from obj by getting its attribuites
     
-    .. code_block:: python
+    .. code-block:: python
 
         # example with first class method
         obj = Message
@@ -59,3 +61,12 @@ def render_vars(
 
     if result.isdigit(): result = int(result)
     return result
+
+async def run_function(
+    func: Callable,
+    *args,
+    **kwargs
+) -> Any:
+    if asyncio.iscoroutinefunction(func):
+        return await func(*args, **kwargs)
+    return await asyncio.to_thread(func, *args, **kwargs)
