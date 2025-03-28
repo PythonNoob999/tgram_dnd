@@ -12,10 +12,10 @@ class CachedItem:
     def __init__(
         self,
         value: Any,
-        ttl: int = None
+        ttl: int = -1
     ):
         self.value = value
-        self.ttl = time.time() + (0 or ttl)
+        self.ttl = time.time() + (ttl if not ttl==-1 else float("inf"))
 
     @property
     def has_expired(self) -> bool:
