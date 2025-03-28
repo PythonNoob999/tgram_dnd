@@ -5,9 +5,9 @@ Core Concepts
 How does the Lib work?
 ======================
 
-Tgram uses UpdateFlows and LogicBlocks to run.
+TgramDND uses Flows and LogicBlocks to run.
 
-Every bot has a main :ref:`App Instance <app>`, which is responsible
+Every bot has a main :class:`App Instance <tgram_dnd.app.App>`, which is responsible
 for containing all Flows and LogicBlocks.
 
 An app contains Flows,  
@@ -23,7 +23,7 @@ which have a series of actions.
 What Is A Flow ?
 -----------------
 a flow is a collection of LogicBlocks and is responsible
-for passing needed updates thorugh them
+for passing needed updates through them
 
 Flows has a lot of kinds, there is MessageFlows which is responsible for Message handling
 and CallbackFlows that are responsible for Callbacks handling, etc...
@@ -81,10 +81,14 @@ then each Flow passes this update to there LogicBlocks
 Then if the block filters matches the incoming update
 it will execute its :ref:`Actions <what-is-an-action?>` 1 by 1
 
-.. note:: Filters
+.. note::
+    when running an ``App`` it will inject itself across all
+    of its flows, blocks and actions, so every action can access the ``App`` resources
+
+.. note:: Filtering
 
     All of your Flows and LogicBlocks can have Filters attached to them
-    that way they only act if a specifc update matches all of there filters
+    that way they only act if a specific update matches all of there filters
     you can read more about filters :doc:`Here <filters>`
 
 .. raw:: html

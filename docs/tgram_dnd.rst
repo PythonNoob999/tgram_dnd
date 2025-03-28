@@ -1,4 +1,4 @@
-TgramDND API
+API Index
 ==================
 
 Subpackages
@@ -9,13 +9,12 @@ Subpackages
 
    tgram_dnd.actions
    tgram_dnd.blocks
+   tgram_dnd.caching
    tgram_dnd.enums
    tgram_dnd.flows
 
 Submodules
 ----------
-
-.. _app:
 
 tgram\_dnd.app module
 ---------------------
@@ -25,8 +24,6 @@ tgram\_dnd.app module
    :show-inheritance:
    :undoc-members:
 
-.. _config:
-
 tgram\_dnd.config module
 ------------------------
 
@@ -35,12 +32,18 @@ tgram\_dnd.config module
    :show-inheritance:
    :undoc-members:
 
-.. _errors:
-
 tgram\_dnd.errors module
 ------------------------
 
 .. automodule:: tgram_dnd.errors
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tgram\_dnd.utils module
+-----------------------
+
+.. automodule:: tgram_dnd.utils
    :members:
    :show-inheritance:
    :undoc-members:

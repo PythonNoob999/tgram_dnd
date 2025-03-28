@@ -5,7 +5,7 @@ from tgram_dnd.utils import run_function
 from typing import Any, Dict, Optional, Callable
 
 class MemoryCache(BaseCache):
-    '''A Memeory cache to store temporary items
+    '''A Memory cache to store temporary items
     
     Args:
         default_ttl (int, *optional*): the default time_to_live in seconds for each item, defaults to 10'''
@@ -45,7 +45,7 @@ class MemoryCache(BaseCache):
         self,
         key: str
     ) -> Optional[CachedItem]:
-        '''get the CachedItem by key if has not expierd
+        '''get the CachedItem by key if has not expired
         
         Args:
             key (str): the item key
@@ -72,7 +72,7 @@ class MemoryCache(BaseCache):
         
         Args:
             ket (str): the item key
-            value (Callable): the function that will retrive the item value (in case the item does not exist/expired)
+            value (Callable): the function that will retrieve the item value (in case the item does not exist/expired)
             ttl (int, *optional*): item time_to_live, defaults to self.default_ttl
         
         Returns:

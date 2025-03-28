@@ -79,7 +79,7 @@ app = App(
   ),
 )
 
-app.add_flow(
+app.add_flows(
   MessageFlow(
     ...
   )
