@@ -1,4 +1,6 @@
-from jinja2 import Template
+from tgram_dnd.actions import Action
+
+from jinja2.nativetypes import NativeTemplate
 from typing import Optional, Callable, Union, Any
 
 import asyncio
@@ -45,21 +47,20 @@ def get_target_function(
 def render_vars(
     string: str,
     *data
-) -> Union[int, str]:
+) -> Any:
     '''used to render all jinja-style variables
     
     Args:
         string (str): the target string
         *data (dict): the data to fill with
     Returns
-        Union[str, int]'''
+        Any'''
     _ = {}
     for dictt in data:
         _ |= dictt
     
-    result = Template(string).render(**_)
+    result = NativeTemplate(string).render(**_)
 
-    if result.isdigit(): result = int(result)
     return result
 
 async def run_function(
