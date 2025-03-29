@@ -7,4 +7,5 @@ topics
 
     concepts
     filters
+    jinja
     caching
