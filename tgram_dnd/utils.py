@@ -1,5 +1,3 @@
-from tgram_dnd.actions import Action
-
 from jinja2.nativetypes import NativeTemplate
 from typing import Optional, Callable, Union, Any
 
