@@ -2,7 +2,6 @@ from tgram import TgBot, filters
 from tgram.types import (
     CallbackQuery
 )
-
 from tgram_dnd.actions.action import Action
 
 from typing import Optional, Union, List
@@ -14,10 +13,7 @@ class CallbackBlock:
     
     Args:
         actions (Union[List[:class:`tgram_dnd.actions.Action`], :class:`tgram_dnd.actions.Action`]): the actions that will be executed
-        filter (`tgram.filters.Filter <https://z44d.github.io/tgram/tgram.html#tgram.filters.Filter>`_, *optional*): filter incoming callbacks, pass Nothing to trigger all updates
-    
-    Returns:
-        None'''
+        filter (`tgram.filters.Filter <https://z44d.github.io/tgram/tgram.html#tgram.filters.Filter>`_, *optional*): filter incoming callbacks, pass Nothing to trigger all updates'''
     def __init__(
         self,
         actions: Union[List[Action], Optional[Action]],
@@ -43,4 +39,8 @@ class CallbackBlock:
         if await self.filter(bot, cb):
             for action in self.actions:
                 action.inject(self.app)
-                await action(cb)
+
+                try:
+                    await action(cb)
+                except tgram_dnd.errors.StopBlock:
+                    break

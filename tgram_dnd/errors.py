@@ -1,6 +1,9 @@
 class StopExecution(Exception):
     '''used to stop action Execution'''
 
+class StopBlock(Exception):
+    '''used to stop the block Execution'''
+
 class InvalidStrings(Exception):
     '''raised when the given strings argument is invalid'''
     def __init__(self, msg: str):
