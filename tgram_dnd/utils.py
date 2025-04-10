@@ -2,6 +2,7 @@ from jinja2.nativetypes import NativeTemplate
 from typing import Optional, Callable, Union, Any
 
 import asyncio
+import tgram_dnd
 
 def get_target_function(
     obj: object,
@@ -62,10 +63,10 @@ def render_vars(
     return result
 
 async def run_function(
-    func: Callable,
+    func: Union[Callable, "tgram_dnd.actions.Action"],
     *args,
     **kwargs
 ) -> Any:
-    if asyncio.iscoroutinefunction(func):
+    if asyncio.iscoroutinefunction(func) or isinstance(func, tgram_dnd.actions.Action):
         return await func(*args, **kwargs)
     return await asyncio.to_thread(func, *args, **kwargs)
