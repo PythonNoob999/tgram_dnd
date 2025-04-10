@@ -44,14 +44,14 @@ class MemoryCache(BaseCache):
     def get(
         self,
         key: str
-    ) -> Optional[CachedItem]:
+    ) -> Optional[Any]:
         '''get the CachedItem by key if has not expired
         
         Args:
             key (str): the item key
         
         Returns:
-            Optional[:class:`tgram_dnd.caching.cached_item.CachedItem`]'''
+            Optional[Any]: the cached value'''
 
         if key not in self.items: return
         item = self.items[key]
@@ -76,7 +76,7 @@ class MemoryCache(BaseCache):
             ttl (int, *optional*): item time_to_live, defaults to self.default_ttl
         
         Returns:
-            :class:`tgram_dnd.caching.cached_item.CachedItem`'''
+            Any: The cached Value'''
 
         item = self.get(key)
 
@@ -87,4 +87,4 @@ class MemoryCache(BaseCache):
             (await run_function(value)),
             ttl,
         )
-        return item
+        return item.get()

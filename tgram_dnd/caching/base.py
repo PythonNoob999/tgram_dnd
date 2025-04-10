@@ -1,6 +1,6 @@
 from tgram_dnd.caching.cached_item import CachedItem
 
-from typing import Any, Dict, Optional, Callable
+from typing import Any, Optional, Callable
 
 class BaseCache:
 
@@ -24,14 +24,14 @@ class BaseCache:
     def get(
         self,
         key: str
-    ) -> Optional[CachedItem]:
+    ) -> Optional[Any]:
         '''get the CachedItem by key if has not expierd
         
         Args:
             key (str): the item key
         
         Returns:
-            Optional[:class:`tgram_dnd.caching.cached_item.CachedItem`]'''
+            Optional[Any]'''
         raise NotImplementedError
     
     def get_or_create(
