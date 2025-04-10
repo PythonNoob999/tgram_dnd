@@ -12,6 +12,7 @@ Subpackages
    tgram_dnd.caching
    tgram_dnd.enums
    tgram_dnd.flows
+   tgram_dnd.conditions
 
 Submodules
 ----------
